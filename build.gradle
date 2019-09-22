@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'faucct'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'com.typesafe.akka', name: 'akka-actor_2.12', version: '2.6.0-M6'
+    compile group: 'com.typesafe.akka', name: 'akka-remote_2.12', version: '2.6.0-M6'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.24'
+    compile group: 'com.typesafe.akka', name: 'akka-slf4j_2.12', version: '2.6.0-M6'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    compile group: 'com.github.romix.akka', name: 'akka-kryo-serialization_2.12', version: '0.5.2'
+    compile group: 'io.aeron', name: 'aeron-driver', version: '1.21.2'
+    compile group: 'io.aeron', name: 'aeron-client', version: '1.21.2'
+}
+
+task runReceiver(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'Receiver'
+}
+task runSender(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'Sender'
+}
